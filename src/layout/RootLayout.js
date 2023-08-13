@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
-
+import { useContext } from "react";
+import { dataContext } from "../context/DataContext";
 export default function RootLayout() {
+  const { currStep } = useContext(dataContext);
   return (
     <main>
       <div className="sidebar">

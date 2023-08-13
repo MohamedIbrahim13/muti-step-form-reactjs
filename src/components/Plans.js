@@ -97,14 +97,14 @@ export default function Plans() {
             <input
               type="checkbox"
               defaultChecked={!isMonthly}
-              defaultValue={isMonthly ? "Montly" : "Yearly"}
-              onClick={e => changeBilling(e)}
+              value={isMonthly ? "Montly" : "Yearly"}
+              onChange={e => changeBilling(e)}
             />
             <span className="slider round"></span>
           </label>
           <p>Yearly</p>
         </div>
-        <button type="submit">Next Step</button>
+        <button>Next Step</button>
       </form>
 
       <NavLink to="#" onClick={() => goBack()}>

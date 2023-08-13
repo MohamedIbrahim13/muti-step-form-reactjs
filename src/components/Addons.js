@@ -36,7 +36,7 @@ export default function Addons() {
     <div className="addons">
       <h1>Pick add-ons</h1>
       <p>Add-ons help enhance your gaming experience.</p>
-      <form action="" method="post">
+      <form method="post">
         {addons.map(item => {
           return (
             <label className="form-control" htmlFor={item.name} key={item.name}>
@@ -65,7 +65,7 @@ export default function Addons() {
           );
         })}
 
-        <button type="submit">Next Step</button>
+        <button>Next Step</button>
       </form>
       <NavLink to="#" onClick={() => goBack()}>
         Go Back
