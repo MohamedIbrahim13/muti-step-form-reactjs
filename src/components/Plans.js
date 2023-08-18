@@ -29,35 +29,65 @@ export default function Plans() {
   };
 
   const changeBilling = e => {
-    e.preventDefault();
-    const infoPlan = formInfo.plan.planName;
-    const currPlan = data.plans.filter(plan => plan.name === infoPlan)[0];
-    const currPrice = !isMonthly ? currPlan.monthlyPrice : currPlan.yearlyPrice;
-    const infoAddon = formInfo.addons;
-    let newAddons = [];
-    if (infoAddon.length > 0) {
-      for (const item of infoAddon) {
-        const theAddOnInfo = data.addons.filter(
-          info => info.name === item.name
-        );
-        newAddons.push({
-          name: item.name,
-          price: !isMonthly
-            ? theAddOnInfo[0].monthlyPrice
-            : theAddOnInfo[0].yearlyPrice,
-        });
-      }
-    }
+    // e.preventDefault();
+    // const infoPlan = formInfo.plan.planName;
+    // const currPlan = data.plans.filter(plan => plan.name === infoPlan)[0];
+    // const currPrice = !isMonthly ? currPlan.monthlyPrice : currPlan.yearlyPrice;
+    // const infoAddon = formInfo.addons;
+    // let newAddons = [];
+    // if (infoAddon.length > 0) {
+      // for (const item of infoAddon) {
+        // const theAddOnInfo = data.addons.filter(
+          // info => info.name === item.name
+        // );
+        // newAddons.push({
+          // name: item.name,
+          // price: !isMonthly
+            // ? theAddOnInfo[0].monthlyPrice
+            // : theAddOnInfo[0].yearlyPrice,
+        // });
+      // }
+    // }
 
-    setFormInfo(prev => ({
-      ...prev,
-      isMonthly: !prev.isMonthly,
-      plan: {
-        ...prev.plan,
-        planPrice: currPrice,
-      },
-      addons: newAddons,
-    }));
+    // setFormInfo(prev => ({
+      // ...prev,
+      // isMonthly: !prev.isMonthly,
+      // plan: {
+        // ...prev.plan,
+        // planPrice: currPrice,
+      // },
+      // addons: newAddons,
+    // }));
+	setFormInfo(prev => {
+      const infoPlan = prev.plan.planName;
+      const currPlan = data.plans.filter(plan => plan.name === infoPlan)[0];
+      const currPrice = !prev.isMonthly ? currPlan.monthlyPrice : currPlan.yearlyPrice;
+      const infoAddon = prev.addons;
+      let newAddons = [];
+      if (infoAddon.length > 0) {
+        for (const item of infoAddon) {
+          const theAddOnInfo = data.addons.filter(
+            info => info.name === item.name
+          );
+          newAddons.push({
+            name: item.name,
+            price: !prev.isMonthly
+              ? theAddOnInfo[0].monthlyPrice
+              : theAddOnInfo[0].yearlyPrice,
+          });
+        }
+      }
+ 
+      return {
+        ...prev,
+        isMonthly: !prev.isMonthly,
+        plan: {
+          ...prev.plan,
+          planPrice: currPrice,
+        },
+        addons: newAddons,
+      };
+    });
   };
   console.log(formInfo);
   return (
